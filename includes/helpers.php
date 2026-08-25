@@ -249,31 +249,36 @@ function nieuw_calendar_event_payload( $post ) {
 	}
 	$terms = get_the_terms( $post->ID, 'nieuw_event_category' );
 	$cats  = array();
+	$settings = nieuw_calendar_get_settings();
 	if ( $terms && ! is_wp_error( $terms ) ) {
 		foreach ( $terms as $term ) {
-			$cats[] = array(
+			$term_color = (string) get_term_meta( $term->term_id, 'nieuw_category_color', true );
+			$cats[]     = array(
 				'id'    => $term->term_id,
 				'slug'  => $term->slug,
 				'name'  => $term->name,
-				'color' => get_term_meta( $term->term_id, 'nieuw_category_color', true ),
+				'color' => $term_color ? $term_color : $settings['primary'],
 			);
 		}
 	}
 	$thumb = get_the_post_thumbnail_url( $post, 'medium_large' );
+	$override = (string) get_post_meta( $post->ID, '_nieuw_event_color', true );
 	return array(
-		'id'          => $post->ID,
-		'title'       => get_the_title( $post ),
-		'description' => wp_strip_all_tags( $post->post_content ),
-		'startDate'   => $start_date,
-		'startTime'   => (string) get_post_meta( $post->ID, '_nieuw_event_start_time', true ),
-		'endDate'     => $end_date,
-		'endTime'     => (string) get_post_meta( $post->ID, '_nieuw_event_end_time', true ),
-		'allDay'      => $all_day,
-		'location'    => (string) get_post_meta( $post->ID, '_nieuw_event_location', true ),
-		'color'       => nieuw_calendar_event_color( $post->ID ),
-		'url'         => get_permalink( $post ),
-		'image'       => $thumb ? $thumb : '',
-		'categories'  => $cats,
+		'id'            => $post->ID,
+		'title'         => get_the_title( $post ),
+		'description'   => wp_strip_all_tags( $post->post_content ),
+		'startDate'     => $start_date,
+		'startTime'     => (string) get_post_meta( $post->ID, '_nieuw_event_start_time', true ),
+		'endDate'       => $end_date,
+		'endTime'       => (string) get_post_meta( $post->ID, '_nieuw_event_end_time', true ),
+		'allDay'        => $all_day,
+		'location'      => (string) get_post_meta( $post->ID, '_nieuw_event_location', true ),
+		'color'         => nieuw_calendar_event_color( $post->ID ),
+		'colorOverride' => $override,
+		'url'           => get_permalink( $post ),
+		'image'         => $thumb ? $thumb : '',
+		'when'          => nieuw_calendar_format_when( $post->ID ),
+		'categories'    => $cats,
 	);
 }
 
