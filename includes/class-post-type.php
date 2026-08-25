@@ -27,8 +27,10 @@ class Nieuw_Calendar_Post_Type {
 				'show_in_menu'       => false,
 				'show_in_admin_bar'  => false,
 				'show_in_rest'       => true,
-				'has_archive'        => true,
-				'rewrite'            => array( 'slug' => 'events' ),
+				// No archive at /events/ — that collides with a normal Events page.
+				// Front-end calendar is rendered via [nieuw_calendar] shortcode.
+				'has_archive'        => false,
+				'rewrite'            => array( 'slug' => 'nieuw-event' ),
 				'supports'           => array( 'title', 'editor', 'thumbnail' ),
 				'menu_icon'          => 'dashicons-calendar-alt',
 				'capability_type'    => 'post',
