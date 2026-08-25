@@ -146,6 +146,89 @@ function nieuw_calendar_event_color( $post_id ) {
 }
 
 /**
+ * Allowed event statuses (demo labels → WP post_status).
+ *
+ * @return array<string, string>
+ */
+function nieuw_calendar_statuses() {
+	return array(
+		'publish' => __( 'Published', 'nieuw-calendar' ),
+		'draft'   => __( 'Draft', 'nieuw-calendar' ),
+		'pending' => __( 'Pending', 'nieuw-calendar' ),
+		'private' => __( 'Private', 'nieuw-calendar' ),
+	);
+}
+
+/**
+ * Format a wall-clock time for admin lists.
+ *
+ * @param string $time H:i.
+ * @param string $format 12 or 24.
+ * @return string
+ */
+function nieuw_calendar_format_time( $time, $format = '12' ) {
+	if ( ! $time ) {
+		return '';
+	}
+	$parts = explode( ':', $time );
+	$h     = isset( $parts[0] ) ? (int) $parts[0] : 0;
+	$m     = isset( $parts[1] ) ? (int) $parts[1] : 0;
+	if ( '24' === (string) $format ) {
+		return sprintf( '%02d:%02d', $h, $m );
+	}
+	$suffix = $h >= 12 ? 'PM' : 'AM';
+	$hour   = $h % 12;
+	if ( 0 === $hour ) {
+		$hour = 12;
+	}
+	return $hour . ':' . sprintf( '%02d', $m ) . ' ' . $suffix;
+}
+
+/**
+ * Human "when" string matching the demo list.
+ *
+ * @param int $post_id Post ID.
+ * @return string
+ */
+function nieuw_calendar_format_when( $post_id ) {
+	$settings   = nieuw_calendar_get_settings();
+	$all_day    = (bool) get_post_meta( $post_id, '_nieuw_event_all_day', true );
+	$start_date = (string) get_post_meta( $post_id, '_nieuw_event_start_date', true );
+	$end_date   = (string) get_post_meta( $post_id, '_nieuw_event_end_date', true );
+	$start_time = (string) get_post_meta( $post_id, '_nieuw_event_start_time', true );
+	$end_time   = (string) get_post_meta( $post_id, '_nieuw_event_end_time', true );
+	if ( ! $start_date ) {
+		return '—';
+	}
+	if ( ! $end_date ) {
+		$end_date = $start_date;
+	}
+	$start_ts = strtotime( $start_date . ' 00:00:00' );
+	$end_ts   = strtotime( $end_date . ' 00:00:00' );
+	if ( ! $start_ts ) {
+		return '—';
+	}
+	$start_label = wp_date( 'M j, Y', $start_ts );
+	$end_label   = $end_ts ? wp_date( 'M j, Y', $end_ts ) : $start_label;
+	$multi       = $end_date !== $start_date;
+	if ( $all_day ) {
+		return $multi ? $start_label . ' – ' . $end_label : $start_label . ' · ' . __( 'All day', 'nieuw-calendar' );
+	}
+	$start_t = nieuw_calendar_format_time( $start_time, $settings['time_format'] );
+	$end_t   = nieuw_calendar_format_time( $end_time, $settings['time_format'] );
+	if ( $multi ) {
+		return trim( $start_label . ' ' . $start_t . ' – ' . $end_label . ' ' . $end_t );
+	}
+	if ( $start_t && $end_t ) {
+		return $start_label . ' · ' . $start_t . ' – ' . $end_t;
+	}
+	if ( $start_t ) {
+		return $start_label . ' · ' . $start_t;
+	}
+	return $start_label;
+}
+
+/**
  * Build a public event payload.
  *
  * @param WP_Post $post Post.
