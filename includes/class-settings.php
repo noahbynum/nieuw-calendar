@@ -64,7 +64,7 @@ class Nieuw_Calendar_Settings {
 		$s = nieuw_calendar_get_settings();
 		$zones = timezone_identifiers_list();
 		?>
-		<div class="wrap">
+		<div class="wrap nieuw-admin">
 			<h1><?php esc_html_e( 'Nieuw Calendar Settings', 'nieuw-calendar' ); ?></h1>
 			<form method="post" action="options.php">
 				<?php settings_fields( 'nieuw_calendar' ); ?>
