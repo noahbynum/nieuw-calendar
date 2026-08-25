@@ -3,7 +3,7 @@
  * Plugin Name:       Nieuw Calendar
  * Plugin URI:        https://nieuwark.com
  * Description:       A refined events calendar with month and list views, categories, color coding, and iCal export.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 6.4
  * Requires PHP:      8.0
  * Author:            Nieuw Ark
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'NIEUW_CALENDAR_VERSION', '1.0.0' );
+define( 'NIEUW_CALENDAR_VERSION', '1.1.0' );
 define( 'NIEUW_CALENDAR_FILE', __FILE__ );
 define( 'NIEUW_CALENDAR_DIR', plugin_dir_path( __FILE__ ) );
 define( 'NIEUW_CALENDAR_URL', plugin_dir_url( __FILE__ ) );
@@ -62,6 +62,7 @@ add_action( 'init', array( 'Nieuw_Calendar_Post_Type', 'register' ) );
 add_action( 'init', array( 'Nieuw_Calendar_Ical', 'register' ) );
 add_action( 'init', array( 'Nieuw_Calendar_Shortcode', 'register' ) );
 add_action( 'admin_init', array( 'Nieuw_Calendar_Settings', 'register' ) );
+add_action( 'admin_init', array( 'Nieuw_Calendar_Admin', 'redirect_native_screens' ) );
 add_action( 'admin_menu', array( 'Nieuw_Calendar_Admin', 'menu' ) );
 add_action( 'add_meta_boxes', array( 'Nieuw_Calendar_Meta', 'boxes' ) );
 add_action( 'save_post_nieuw_event', array( 'Nieuw_Calendar_Meta', 'save' ) );
@@ -71,3 +72,7 @@ add_action( 'nieuw_event_category_add_form_fields', array( 'Nieuw_Calendar_Meta'
 add_action( 'nieuw_event_category_edit_form_fields', array( 'Nieuw_Calendar_Meta', 'category_edit_field' ) );
 add_action( 'created_nieuw_event_category', array( 'Nieuw_Calendar_Meta', 'save_category_color' ) );
 add_action( 'edited_nieuw_event_category', array( 'Nieuw_Calendar_Meta', 'save_category_color' ) );
+add_filter( 'get_edit_post_link', array( 'Nieuw_Calendar_Admin', 'edit_link' ), 10, 2 );
+add_filter( 'parent_file', array( 'Nieuw_Calendar_Admin', 'parent_file' ) );
+add_filter( 'submenu_file', array( 'Nieuw_Calendar_Admin', 'submenu_file' ) );
+add_filter( 'use_block_editor_for_post_type', array( 'Nieuw_Calendar_Admin', 'disable_block_editor' ), 10, 2 );

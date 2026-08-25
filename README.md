@@ -4,6 +4,8 @@ WordPress events calendar by Nieuw Ark.
 
 Month and list views, categories, color coding with opacity, font choices, and iCal export.
 
+Events are added from **Nieuw Calendar → Add Event** — a dedicated form (title, dates, venue, categories, color, featured image). WordPress’s block editor is not used.
+
 ## Install
 
 1. Download `nieuw-calendar.zip` from [Releases](https://github.com/noahbynum/nieuw-calendar/releases) or clone this repo.
