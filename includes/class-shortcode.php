@@ -125,23 +125,15 @@ class Nieuw_Calendar_Shortcode {
 			}
 		}
 
-		$admin_url = '';
-		if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) {
-			$admin_url = admin_url( 'admin.php?page=nieuw-calendar' );
-		}
-
 		$payload = array(
 			'events'     => $events,
 			'categories' => $cats,
 			'settings'   => $settings,
 			'ical'       => home_url( '/?nieuw_calendar_ical=1' ),
-			'adminUrl'   => $admin_url,
 			'i18n'       => array(
 				'month'      => __( 'Month', 'nieuw-calendar' ),
 				'list'       => __( 'List', 'nieuw-calendar' ),
 				'all'        => __( 'All', 'nieuw-calendar' ),
-				'sub'        => __( 'Subscribe .ics', 'nieuw-calendar' ),
-				'dashboard'  => __( 'Dashboard', 'nieuw-calendar' ),
 				'prev'       => __( 'Previous month', 'nieuw-calendar' ),
 				'next'       => __( 'Next month', 'nieuw-calendar' ),
 				'close'      => __( 'Close', 'nieuw-calendar' ),
@@ -164,14 +156,12 @@ class Nieuw_Calendar_Shortcode {
 	public static function render( $atts ) {
 		$atts = shortcode_atts(
 			array(
-				'view'   => 'month',
-				'header' => '1',
+				'view' => 'month',
 			),
 			$atts,
 			'nieuw_calendar'
 		);
-		$view   = 'list' === $atts['view'] ? 'list' : 'month';
-		$header = ( '0' === (string) $atts['header'] ) ? '0' : '1';
+		$view     = 'list' === $atts['view'] ? 'list' : 'month';
 		$settings = nieuw_calendar_get_settings();
 		$fonts    = nieuw_calendar_fonts();
 		$body     = isset( $fonts[ $settings['font_body'] ] ) ? $fonts[ $settings['font_body'] ] : $fonts['figtree'];
@@ -196,9 +186,8 @@ class Nieuw_Calendar_Shortcode {
 		);
 
 		return sprintf(
-			'<div class="nieuw-calendar" data-view="%1$s" data-header="%2$s" style="%3$s"></div>',
+			'<div class="nieuw-calendar" data-view="%1$s" style="%2$s"></div>',
 			esc_attr( $view ),
-			esc_attr( $header ),
 			$style
 		);
 	}

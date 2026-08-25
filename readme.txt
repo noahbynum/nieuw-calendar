@@ -4,7 +4,7 @@ Tags: calendar, events, ical
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 8.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -36,6 +36,9 @@ Nieuw Calendar is a focused events calendar for WordPress. The public calendar m
 5. Visit **Settings → Permalinks** and click **Save**.
 
 == Changelog ==
+
+= 1.2.1 =
+* Remove the public Nieuw Ark heading, title, Subscribe .ics, and Dashboard controls so the calendar sits in the page.
 
 = 1.2.0 =
 * Public month and list views now match the Nieuw Calendar demo (spanning chips, list cards, event overlay, fonts, and theme colors).

@@ -12,7 +12,7 @@ Events are added from **Nieuw Calendar → Add Event** — a dedicated form (tit
 2. In WordPress: **Plugins → Add New → Upload Plugin**.
 3. Activate **Nieuw Calendar**.
 4. Add events under **Nieuw Calendar → Events**.
-5. Place `[nieuw_calendar]` on any page. Use `[nieuw_calendar view="list"]` to start in list view. Use `[nieuw_calendar header="0"]` to hide the Nieuw Calendar heading if the page already has one.
+5. Place `[nieuw_calendar]` on any page. Use `[nieuw_calendar view="list"]` to start in list view.
 
 After installing or updating, visit **Settings → Permalinks** and click **Save** so rewrite rules refresh.
 

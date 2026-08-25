@@ -3,7 +3,7 @@
  * Plugin Name:       Nieuw Calendar
  * Plugin URI:        https://nieuwark.com
  * Description:       A refined events calendar with month and list views, categories, color coding, and iCal export.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Requires at least: 6.4
  * Requires PHP:      8.0
  * Author:            Nieuw Ark
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'NIEUW_CALENDAR_VERSION', '1.2.0' );
+define( 'NIEUW_CALENDAR_VERSION', '1.2.1' );
 define( 'NIEUW_CALENDAR_FILE', __FILE__ );
 define( 'NIEUW_CALENDAR_DIR', plugin_dir_path( __FILE__ ) );
 define( 'NIEUW_CALENDAR_URL', plugin_dir_url( __FILE__ ) );

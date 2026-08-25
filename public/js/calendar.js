@@ -301,7 +301,6 @@
     var firstDay = Number(settings.first_day || settings.firstDayOfWeek || 0) === 1 ? 1 : 0;
     var radius = Number(settings.border_radius || settings.borderRadius || 12);
     var chipRadius = Math.max(4, radius / 3);
-    var showHeader = root.getAttribute("data-header") !== "0";
     var view = root.getAttribute("data-view") === "list" ? "list" : "month";
     var cursor = new Date();
     cursor.setDate(1);
@@ -351,30 +350,7 @@
 
     function render() {
       var visible = eventsVisible();
-      var html = "";
-      if (showHeader) {
-        html +=
-          '<header class="nc-brand"><div class="nc-brand-inner">' +
-          "<div><p class=\"nc-kicker\">Nieuw Ark</p>" +
-          '<h1 class="nc-title">Nieuw Calendar</h1></div>' +
-          '<div class="nc-brand-actions">' +
-          '<a class="nc-btn nc-btn-ghost" href="' +
-          esc(DATA.ical || "#") +
-          '">' +
-          ICONS.download +
-          esc(t("sub", "Subscribe .ics")) +
-          "</a>" +
-          (DATA.adminUrl
-            ? '<a class="nc-btn" href="' +
-              esc(DATA.adminUrl) +
-              '">' +
-              esc(t("dashboard", "Dashboard")) +
-              "</a>"
-            : "") +
-          "</div></div></header>";
-      }
-
-      html += '<div class="nc-main">';
+      var html = '<div class="nc-main">';
       html += '<div class="nc-toolbar">';
       html +=
         '<div class="nc-month-nav">' +
@@ -409,17 +385,6 @@
         ICONS.list +
         esc(t("list", "List")) +
         "</button></div></div>";
-
-      if (!showHeader) {
-        html +=
-          '<div class="nc-brand-actions" style="margin:-0.5rem 0 1.25rem">' +
-          '<a class="nc-btn nc-btn-ghost" href="' +
-          esc(DATA.ical || "#") +
-          '">' +
-          ICONS.download +
-          esc(t("sub", "Subscribe .ics")) +
-          "</a></div>";
-      }
 
       var cats = DATA.categories || [];
       html += '<div class="nc-filters">';
