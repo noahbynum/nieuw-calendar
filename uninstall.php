@@ -3,4 +3,4 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-delete_option( 'nieuw_calendar_settings' );
+// Keep settings and events so a delete + re-upload can replace an older copy.

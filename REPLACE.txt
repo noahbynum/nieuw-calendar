@@ -1,0 +1,19 @@
+Nieuw Calendar 1.2.4 — replace an older copy
+
+WordPress will NOT overwrite an installed plugin if you only use
+Plugins → Add New → Upload Plugin. That is why 1.2.1 stayed active.
+
+Do this instead:
+
+1. WP Admin → Plugins
+2. Find Nieuw Calendar and look at the file path under the name
+   (nieuw-calendar/nieuw-calendar.php or nieuw-calendar-main/...)
+3. Deactivate it
+4. Click Delete. Events and settings are kept.
+5. Plugins → Add New → Upload Plugin → this zip
+6. Activate Nieuw Calendar
+7. Confirm the Plugins list says Version 1.2.4
+8. Open Nieuw Calendar → Settings and confirm the heading says v1.2.4
+
+If two Nieuw Calendar rows appear, delete the old folder one
+(often named nieuw-calendar-main from a GitHub download).
