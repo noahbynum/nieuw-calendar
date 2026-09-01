@@ -245,6 +245,9 @@
       "font-heading",
       "surface",
       "muted",
+      "popup",
+      "popup-text",
+      "popup-muted",
     ].forEach(function (k) {
       var v = cs.getPropertyValue("--nc-" + k).trim();
       if (v) toEl.style.setProperty("--nc-" + k, v);
@@ -653,8 +656,7 @@
       dialog.setAttribute("aria-modal", "true");
       dialog.setAttribute("aria-labelledby", "nc-dialog-title");
       copyTheme(root, dialog);
-      var dlgRadius = Math.max(12, radius);
-      dialog.style.borderRadius = dlgRadius + "px";
+      dialog.style.borderRadius = Math.max(0, radius) + "px";
       var cats = catPills(event);
       if (event.colorOverride) {
         cats +=
@@ -701,6 +703,14 @@
       document.body.appendChild(dialog);
       document.body.classList.add("nc-modal-open");
       document.addEventListener("keydown", onKey);
+      var scrollHide;
+      dialog.addEventListener("scroll", function () {
+        dialog.classList.add("is-scrolling");
+        clearTimeout(scrollHide);
+        scrollHide = setTimeout(function () {
+          if (dialog) dialog.classList.remove("is-scrolling");
+        }, 700);
+      });
       dialog.querySelector(".nc-dialog-close").focus();
     }
 
