@@ -36,7 +36,10 @@ class Nieuw_Calendar_Settings {
 		$out['border']           = self::hex( $input['border'] ?? '', $defaults['border'] );
 		$out['button']           = self::hex( $input['button'] ?? '', $defaults['button'] );
 		$out['button_text']      = self::hex( $input['button_text'] ?? '', $defaults['button_text'] );
-		foreach ( array( 'primary', 'secondary', 'text', 'background', 'header', 'header_text', 'border', 'button', 'button_text' ) as $key ) {
+		$out['popup']            = self::hex( $input['popup'] ?? '', $defaults['popup'] );
+		$out['popup_text']       = self::hex( $input['popup_text'] ?? '', $defaults['popup_text'] );
+		$out['popup_muted']      = self::hex( $input['popup_muted'] ?? '', $defaults['popup_muted'] );
+		foreach ( array( 'primary', 'secondary', 'text', 'background', 'header', 'header_text', 'border', 'button', 'button_text', 'popup', 'popup_text', 'popup_muted' ) as $key ) {
 			$out[ $key . '_opacity' ] = max( 0, min( 100, absint( $input[ $key . '_opacity' ] ?? 100 ) ) );
 		}
 		$body = sanitize_key( $input['font_body'] ?? $defaults['font_body'] );
@@ -103,12 +106,16 @@ class Nieuw_Calendar_Settings {
 					self::color_row( $s, 'border', __( 'Borders', 'nieuw-calendar' ) );
 					self::color_row( $s, 'button', __( 'Buttons', 'nieuw-calendar' ) );
 					self::color_row( $s, 'button_text', __( 'Button text', 'nieuw-calendar' ) );
+					self::color_row( $s, 'popup', __( 'Event popup background', 'nieuw-calendar' ) );
+					self::color_row( $s, 'popup_text', __( 'Event popup text', 'nieuw-calendar' ) );
+					self::color_row( $s, 'popup_muted', __( 'Event popup muted text', 'nieuw-calendar' ) );
 					?>
 					<tr>
 						<th><label for="nc_radius"><?php esc_html_e( 'Border radius', 'nieuw-calendar' ); ?></label></th>
 						<td>
 							<input type="range" id="nc_radius" name="nieuw_calendar_settings[border_radius]" min="0" max="28" value="<?php echo esc_attr( $s['border_radius'] ); ?>" />
 							<span><?php echo esc_html( (string) $s['border_radius'] ); ?>px</span>
+							<p class="description"><?php esc_html_e( 'Applies to the calendar grid, cards, buttons, and the event popup.', 'nieuw-calendar' ); ?></p>
 						</td>
 					</tr>
 				</table>

@@ -170,7 +170,7 @@ class Nieuw_Calendar_Shortcode {
 		self::enqueue( $settings );
 
 		$style = sprintf(
-			'--nc-primary:%1$s;--nc-secondary:%2$s;--nc-text:%3$s;--nc-bg:%4$s;--nc-header:%5$s;--nc-header-text:%6$s;--nc-border:%7$s;--nc-button:%8$s;--nc-button-text:%9$s;--nc-radius:%10$s;--nc-font:%11$s;--nc-font-heading:%12$s;--nc-surface:#fbf8f2;--nc-muted:#6e675e;',
+			'--nc-primary:%1$s;--nc-secondary:%2$s;--nc-text:%3$s;--nc-bg:%4$s;--nc-header:%5$s;--nc-header-text:%6$s;--nc-border:%7$s;--nc-button:%8$s;--nc-button-text:%9$s;--nc-radius:%10$s;--nc-font:%11$s;--nc-font-heading:%12$s;--nc-popup:%13$s;--nc-popup-text:%14$s;--nc-popup-muted:%15$s;--nc-surface:%13$s;--nc-muted:%15$s;',
 			esc_attr( nieuw_calendar_rgba( $settings['primary'], $settings['primary_opacity'] ) ),
 			esc_attr( nieuw_calendar_rgba( $settings['secondary'], $settings['secondary_opacity'] ) ),
 			esc_attr( nieuw_calendar_rgba( $settings['text'], $settings['text_opacity'] ) ),
@@ -182,7 +182,10 @@ class Nieuw_Calendar_Shortcode {
 			esc_attr( nieuw_calendar_rgba( $settings['button_text'], $settings['button_text_opacity'] ) ),
 			esc_attr( (string) $settings['border_radius'] ) . 'px',
 			esc_attr( $body['family'] ),
-			esc_attr( $head['family'] )
+			esc_attr( $head['family'] ),
+			esc_attr( nieuw_calendar_rgba( $settings['popup'], $settings['popup_opacity'] ) ),
+			esc_attr( nieuw_calendar_rgba( $settings['popup_text'], $settings['popup_text_opacity'] ) ),
+			esc_attr( nieuw_calendar_rgba( $settings['popup_muted'], $settings['popup_muted_opacity'] ) )
 		);
 
 		return sprintf(
