@@ -38,7 +38,11 @@ Nieuw Calendar is a focused events calendar for WordPress. The public calendar m
 == Changelog ==
 
 = 1.2.5 =
-* Stop a second plugin folder from crashing the site. Calendar script now mounts after Elementor paints the shortcode.
+* A second plugin folder no longer crashes the site (first loaded copy wins).
+* Calendar remounts after Elementor paints the shortcode.
+* Assets load when the page or Elementor data contains the shortcode.
+* Shows “Loading calendar…” until JavaScript mounts.
+* To update: delete every Nieuw Calendar row, then upload this zip. Events and settings stay.
 
 = 1.2.4 =
 * Safer reinstall: deleting the plugin no longer wipes calendar settings. Admin screens show the plugin version.
