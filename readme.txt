@@ -4,7 +4,7 @@ Tags: calendar, events, ical
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 8.0
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -36,6 +36,9 @@ Nieuw Calendar is a focused events calendar for WordPress. The public calendar m
 5. Visit **Settings → Permalinks** and click **Save**.
 
 == Changelog ==
+
+= 1.2.3 =
+* Event popup background, text, and muted text are set in Settings. Shared border radius clips the whole popup. Scrollbar is a thin Grok-style overlay that appears only while scrolling.
 
 = 1.2.2 =
 * Event popup colors are now in Settings. Border radius applies to the popup. Popup scrollbar is thin and only visible while scrolling.

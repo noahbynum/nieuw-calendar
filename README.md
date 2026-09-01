@@ -2,7 +2,7 @@
 
 WordPress events calendar by Nieuw Ark.
 
-The public calendar matches the Nieuw Calendar demo: month grid with spanning event chips, grouped list view, category filters, event detail overlay, fonts, colors, and iCal export. Event popup colors and the shared border radius are set under **Nieuw Calendar → Settings**.
+The public calendar matches the Nieuw Calendar demo: month grid with spanning event chips, grouped list view, category filters, event detail overlay, fonts, colors, and iCal export. Event popup background, text, and muted text plus the shared border radius are set under **Nieuw Calendar → Settings**. The popup uses a thin Grok-style scrollbar that appears only while scrolling.
 
 Events are added from **Nieuw Calendar → Add Event** — a dedicated form (title, dates, venue, categories, color, featured image). WordPress’s block editor is not used.
 
