@@ -1,19 +1,25 @@
-Nieuw Calendar 1.2.4 — replace an older copy
+Nieuw Calendar 1.2.5 — replace every older copy
 
-WordPress will NOT overwrite an installed plugin if you only use
-Plugins → Add New → Upload Plugin. That is why 1.2.1 stayed active.
+WordPress will not overwrite an installed plugin from
+Plugins → Add New → Upload. That is why 1.2.1 and 1.2.4
+ended up side by side and the calendar went blank.
 
-Do this instead:
+Two active copies crash the site (same PHP class names).
+
+Do this:
 
 1. WP Admin → Plugins
-2. Find Nieuw Calendar and look at the file path under the name
-   (nieuw-calendar/nieuw-calendar.php or nieuw-calendar-main/...)
-3. Deactivate it
-4. Click Delete. Events and settings are kept.
-5. Plugins → Add New → Upload Plugin → this zip
-6. Activate Nieuw Calendar
-7. Confirm the Plugins list says Version 1.2.4
-8. Open Nieuw Calendar → Settings and confirm the heading says v1.2.4
+2. Deactivate EVERY row named Nieuw Calendar
+3. Delete EVERY row named Nieuw Calendar
+   Events and settings stay in the database.
+4. Plugins → Add New → Upload Plugin → this zip
+5. Activate the one remaining Nieuw Calendar
+6. Confirm Version 1.2.5 under the plugin name
+7. Nieuw Calendar → Settings should say v1.2.5
+8. Events page still uses [nieuw_calendar]
+9. Purge Elementor / cache plugin / CDN cache
+10. Hard-refresh the events page (Ctrl+Shift+R)
 
-If two Nieuw Calendar rows appear, delete the old folder one
-(often named nieuw-calendar-main from a GitHub download).
+If two rows appear again, the extra one is usually
+nieuw-calendar-main or nieuw-calendar-1 from a GitHub zip.
+Delete that extra row.
