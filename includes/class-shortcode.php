@@ -64,8 +64,7 @@ class Nieuw_Calendar_Shortcode {
 			true
 		);
 		if ( self::page_has_calendar() ) {
-			self::enqueue_fonts( nieuw_calendar_get_settings() );
-			wp_enqueue_style( 'nieuw-calendar' );
+			self::enqueue( nieuw_calendar_get_settings() );
 		}
 	}
 
@@ -189,9 +188,10 @@ class Nieuw_Calendar_Shortcode {
 		);
 
 		return sprintf(
-			'<div class="nieuw-calendar" data-view="%1$s" style="%2$s"></div>',
+			'<div class="nieuw-calendar" data-view="%1$s" style="%2$s"><div class="nc-boot">%3$s</div></div>',
 			esc_attr( $view ),
-			$style
+			$style,
+			esc_html__( 'Loading calendar…', 'nieuw-calendar' )
 		);
 	}
 }
